@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class JogoDaVelha{
 	public static void main(String args[]){
 		int tabuleiro[][] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}}; //array de alunos		
-		boolean ganhou = false, posOcupada = false;
+		boolean ganhou = false,  velha = false, posOcupada = false;
 		int posicao, qualJogador = 0;
 		Scanner entrada =  new Scanner(System.in);
 		
 		imprimeTabuleiro(tabuleiro);
 		
-		while((ganhou == false)&&(posOcupada == false)){
-			System.out.printf("Escolha uma posição jogador %d\n:", qualJogador);
+		while((ganhou == false)&&(velha==false)){
+			System.out.printf("Escolha uma posicao jogador %d:\n", qualJogador);
 			posicao = entrada.nextInt();
 			
 			if ((posicao>=0)&&(posicao<3)){
@@ -22,7 +22,7 @@ public class JogoDaVelha{
 				}
 			}else{
 				if ((posicao>=3)&&(posicao<6)){
-					if(tabuleiro[0][posicao]==-1){
+					if(tabuleiro[1][posicao-3]==-1){
 						tabuleiro[1][posicao-3] = qualJogador;
 					}else{
 						System.out.println("Esta posicao ja esta ocupada! Tente novamente.");
@@ -30,7 +30,7 @@ public class JogoDaVelha{
 					}
 				}else{
 					if ((posicao>=6)&&(posicao<9)){
-						if(tabuleiro[0][posicao]==-1){
+						if(tabuleiro[2][posicao-6]==-1){
 							tabuleiro[2][posicao-6] = qualJogador;
 						}else{
 							System.out.println("Esta posicao ja esta ocupada! Tente novamente.");
@@ -42,9 +42,35 @@ public class JogoDaVelha{
 				
 			}
 			
+			imprimeTabuleiro(tabuleiro);
+			
+			ganhou = ganha(qualJogador, tabuleiro);
+			if(posOcupada == false){
+				if(qualJogador == 0){
+					qualJogador++;
+				}else{
+					qualJogador = 0;
+				}
+			}else{
+				posOcupada = false;
+			}
+			velha = velha(tabuleiro);
 		}
+		
+		
 
 		
+	}
+	public static boolean velha(int tabuleiro[][]){
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				if(tabuleiro[i][j] == -1){
+					return false;
+				}
+			}
+		}
+		System.out.println("Deu Velha!");
+		return true;
 	}
 	
 	public static void imprimeTabuleiro(int tabuleiro[][]){
@@ -63,17 +89,67 @@ public class JogoDaVelha{
 		}
 	}
 	
-	public static void ganha(int jogador, int tabuleiro[][]){
-		//ganha 012,345,678,036,147,258,048,246
-		//ganha [0][0]
-		int linha=0;
+	public static boolean ganha(int jogador, int tabuleiro[][]){
+		int soma[]={0,0,0};
+		int ponto = 0;
+		//linha
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++){
 				if(tabuleiro[i][j] == jogador){
-					ponto++;
+					ponto++;	
 				}
 			}
+			if(ponto==3){
+				System.out.printf("Jogador %d Ganhou linha",jogador);
+				return true;
+			}
+			ponto = 0;
 		}
+		
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				if(tabuleiro[i][j] == jogador){
+					soma[i]++;	
+				}
+			}	
+			if(soma[i]==3){
+				System.out.printf("Jogador %d Ganhou coluna",jogador);
+				return true;
+			}
+		}
+		
+		ponto = 0;
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				if(i==j){
+					if(tabuleiro[i][j] == jogador){
+						ponto++;	
+					}
+				}
+			}	
+		}
+		
+		if(ponto==3){
+				System.out.printf("Jogador %d Ganhou diagonal p",jogador);
+				return true;
+		}
+		
+		ponto = 0;
+		
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+				if(i+j==2){
+					if(tabuleiro[i][j] == jogador){
+						ponto++;		
+					}
+				}
+			}	
+		}
+		if(ponto==3){
+				System.out.printf("Jogador %d Ganhou diagonal s",jogador);
+				return true;
+		}
+		return false;
 	}
-
+	
 }
