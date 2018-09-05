@@ -36,6 +36,9 @@ public class JogoDaVelha{
 							System.out.println("Esta posicao ja esta ocupada! Tente novamente.");
 							posOcupada = true;
 						}
+					}else{
+						System.out.println("Esta posicao eh invalida! Tente novamente.");
+						posOcupada = true;
 					}
 				
 				}
@@ -109,9 +112,11 @@ public class JogoDaVelha{
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 3; j++){
 				if(tabuleiro[i][j] == jogador){
-					soma[i]++;	
+					soma[j] = soma[j] + 1;	
 				}
 			}	
+		}
+		for(int i = 0; i < 3; i++){
 			if(soma[i]==3){
 				System.out.printf("Jogador %d Ganhou coluna",jogador);
 				return true;
