@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class ContaTest{
 	public static void main(String args[]){
+		String senhaAntiga;
 		Conta conta1 = new Conta("ANA", 1345, 40.50);
 		Conta conta2 = new Conta();
 		Conta conta3 = new Conta();
@@ -13,7 +14,8 @@ public class ContaTest{
 		conta2.setNome("Paula");
 		conta2.setLimite(400.00);
 		conta2.depositar(100.00);
-		conta2.sacar(600.00);
+		System.out.printf("Digite o valor que voce quer sacar.\n");
+		conta2.sacar(entrada.nextDouble());
 		conta2.imprime();
 		
 		
@@ -24,7 +26,15 @@ public class ContaTest{
 		conta3.setNome(entrada.nextLine());
 		System.out.printf("Digite o valor do limite.\n");
 		conta3.setLimite(entrada.nextDouble());
-		conta3.depositar(5000.00);
+		System.out.printf("Digite o valor que voce quer sacar.\n");
+		conta3.depositar(entrada.nextDouble());
+		System.out.println("Voce esta alterando a senha.");
+		System.out.printf("Digite senha antiga.\n");
+		senhaAntiga = entrada.nextLine();
+		entrada.nextLine();
+		System.out.printf("Digite nova senha.\n");
+		conta3.alterarSenha(senhaAntiga,entrada.nextLine());
+		
 		conta3.imprime();
 
 		

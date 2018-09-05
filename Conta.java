@@ -55,6 +55,8 @@ public class Conta{
 	public void sacar(double valor){
 		if((saldo + limite) >= valor){
 			saldo -= valor;
+		}else{
+			System.out.println("Nao foi possivel sacar o valor!");	
 		}
 	}
 
