@@ -3,7 +3,23 @@ public class Conta{
 	private String nome;
 	private double saldo;
 	private double limite;
+	private String senha;
 	
+	public Conta(){
+		this.numero = 0;	
+		this.nome = "";	
+		this.saldo = 0.0;	
+		this.limite = 0.0;	
+		this.senha = "0000";	
+	}
+	public Conta(String nome, int numero, double limite){
+		this.numero = numero;	
+		this.nome = nome;	
+		this.saldo = 0.0;	
+		this.limite = limite;	
+		this.senha = "0000";	
+	}
+
 	public void setNumero(int numero){
 		this.numero = numero;		
 	}
@@ -21,10 +37,7 @@ public class Conta{
 	public void setSaldo(double saldo){
 		this.saldo = saldo;		
 	}
-	
-	public double getSaldo(){
-		return saldo;		
-	}
+
 	public void setLimite(double limite){
 		this.limite = limite;		
 	}
@@ -37,5 +50,25 @@ public class Conta{
 		System.out.printf("Nome do corentista = %s\n",nome);
 		System.out.printf("Saldo = %.2f\n",saldo);
 		System.out.printf("Limite = %.2f\n",limite);
+	}
+	
+	public void sacar(double valor){
+		if((saldo + limite) >= valor){
+			saldo -= valor;
+		}else{
+			System.out.println("Nao foi possivel sacar o valor!");	
+		}
+	}
+
+	public void depositar(double valor){
+		saldo += valor;
+	}
+
+	public void alterarSenha(String senhaAntiga, String senhaNova){
+		if(senha == senhaAntiga){
+			senha = senhaNova;
+		}else{
+			System.out.println("Operacao nao realizada! Senha incorreta!");	
+		}
 	}
 }
