@@ -45,6 +45,11 @@ public class Conta{
 	public double getLimite(){
 		return limite;		
 	}
+	
+	public String getSenha(){
+		return senha;		
+	}
+	
 	public void imprime(){
 		System.out.printf("Numero da conta = %d\n",numero);
 		System.out.printf("Nome do corentista = %s\n",nome);
