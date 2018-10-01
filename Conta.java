@@ -1,9 +1,20 @@
-public class Conta{
-	private int numero;
-	private String nome;
-	private double saldo;
-	private double limite;
-	private String senha;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication2;
+
+/**
+ *
+ * @author PC
+ */
+public abstract class Conta{
+	protected int numero;
+	protected String nome;
+	protected double saldo;
+	protected double limite;
+	protected String senha;
 	
 	public Conta(){
 		this.numero = 0;	
@@ -70,7 +81,7 @@ public class Conta{
 	}
 
 	public void alterarSenha(String senhaAntiga, String senhaNova){
-		if(senha == senhaAntiga){
+		if(senha == null ? senhaAntiga == null : senha.equals(senhaAntiga)){
 			senha = senhaNova;
 		}else{
 			System.out.println("Operacao nao realizada! Senha incorreta!");	
