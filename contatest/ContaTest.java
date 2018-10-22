@@ -11,9 +11,9 @@ import javax.swing.JFrame;
  */
 public class ContaTest {
     public static void main (String[] agrs){
-        ContaTesteFrame contaFrame = new ContaTesteFrame();
-        contaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        contaFrame.setSize(260, 180);
-        contaFrame.setVisible(true);
+        MenuFrame menu = new MenuFrame();
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setSize(260, 180);
+        menu.setVisible(true);
     }
 }
