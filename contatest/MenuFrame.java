@@ -60,7 +60,7 @@ public class MenuFrame extends JFrame {
             }
             else if(e.getSource() == btnCliente){
                 //chama o ClienteFrame
-                ClienteFrame contaFrame = new ClienteFrame();
+                MenuClienteFrame contaFrame = new MenuClienteFrame();
                 contaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 contaFrame.setSize(260, 180);
                 contaFrame.setVisible(true);

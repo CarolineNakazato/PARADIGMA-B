@@ -24,35 +24,31 @@ import java.io.*;
  *
  * @author 17164260
  */
-public class MenuGerenteFrame extends JFrame {
+public class MenuClienteFrame extends JFrame {
     private JButton btnNovaConta;
     private JButton btnInformacaoConta;
     private JButton btnIncrementaRendimento;
     private JButton btnCobraJuros;
-    private JButton btnImprimeTodasContas;
     
-    public MenuGerenteFrame(){
+    public MenuClienteFrame(){
         super("Conta Bancaria");
         setLayout(new FlowLayout());
         //setLayout(null);
        
-        btnNovaConta = new JButton("Criar Nova Conta");
+        btnNovaConta = new JButton("Sacar");
         add(btnNovaConta);
-        btnInformacaoConta = new JButton("Visualizar Conta");
+        btnInformacaoConta = new JButton("Depositar");
         add(btnInformacaoConta);
-        btnIncrementaRendimento = new JButton("Incrementar Rendimento");
+        btnIncrementaRendimento = new JButton("Visualizar Informacao");
         add(btnIncrementaRendimento);
-        btnCobraJuros = new JButton("Cobrar juros");
+        btnCobraJuros = new JButton("Alterar senha");
         add(btnCobraJuros);
-        btnImprimeTodasContas = new JButton("Imprimir Todas Contas");
-        add(btnImprimeTodasContas);
         
         ButtonHandler handler = new ButtonHandler();
         btnNovaConta.addActionListener(handler);
         btnInformacaoConta.addActionListener(handler);
         btnIncrementaRendimento.addActionListener(handler);
         btnCobraJuros.addActionListener(handler);
-        btnImprimeTodasContas.addActionListener(handler);
     }
 
     private class ButtonHandler implements ActionListener{
@@ -63,37 +59,32 @@ public class MenuGerenteFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == btnNovaConta){
-                //chama o NovaContaFrame
-                NovaContaFrame novaContaFrame = new NovaContaFrame();
+                //chama o SacarFrame
+                SacarFrame novaContaFrame = new SacarFrame();
                 novaContaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 novaContaFrame.setSize(260, 180);
                 novaContaFrame.setVisible(true);
             }
             if(e.getSource() == btnInformacaoConta){
-                //chama o VisualizaContaFrame
-                VisualizaContaFrame visualizaContaFrame = new VisualizaContaFrame();
+                //chama o DepositarFrame
+                DepositarFrame visualizaContaFrame = new DepositarFrame();
                 visualizaContaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 visualizaContaFrame.setSize(300, 300);
                 visualizaContaFrame.setVisible(true);
             }
             if(e.getSource() == btnIncrementaRendimento){
-                //incrementa redimento de todas as contas poupancas
-                ContaFacade cf = ContaFacade.getInstance();
-                cf.incrementarRendimento();
+                //chama o visualizaCliente
+                visualizaCliente jurosFrame = new visualizaCliente();
+                jurosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                jurosFrame.setSize(300, 300);
+                jurosFrame.setVisible(true);
             }
-            if(e.getSource() == btnCobraJuros){
-                //chama o JurosFrame
-                JurosFrame jurosFrame = new JurosFrame();
+            else if(e.getSource() == btnCobraJuros){
+                //chama o AlteraSenha
+                AlteraSenha jurosFrame = new AlteraSenha();
                 jurosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 jurosFrame.setSize(260, 180);
                 jurosFrame.setVisible(true);
-            }
-            else if(e.getSource() == btnImprimeTodasContas){
-                //chama o ImprimirFrame
-                ImprimirFrame imprimirFrame = new ImprimirFrame();
-                imprimirFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                imprimirFrame.setSize(300, 300);
-                imprimirFrame.setVisible(true);
             }
         }
     }

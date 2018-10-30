@@ -13,48 +13,59 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
-import java.util.InputMismatchException;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import java.io.*;
-import java.text.NumberFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
-import javax.swing.text.NumberFormatter;
 
 /**
  *
  * @author 17164260
  */
-public class CadastrarContaSimplesFrame extends JFrame {
+public class CadastrarContaPoupancaFrame extends JFrame {
     private JLabel lbNome;
     private JLabel lbNumero;
+    private JLabel lbTaxaRendimento;
+    private JTextField txtTaxaRendimento;
     private JTextField txtNome;
     private JTextField txtNumero;
     private JButton btnCriar;
     
-    public CadastrarContaSimplesFrame(){
+    public CadastrarContaPoupancaFrame(){
         super("Conta Bancaria");
         setLayout(new FlowLayout());
         setLayout(null);
-    
+        
         lbNome = new JLabel("Nome: ");
-        lbNome.setToolTipText("Digite um nome conta.");
+        lbNome.setToolTipText("Digite um nome.");
         add(lbNome);
         
         Dimension sizeNome = lbNome.getPreferredSize();
         lbNome.setBounds(10, 10, sizeNome.width, sizeNome.height);
         
         lbNumero = new JLabel("Numero: ");
-        lbNumero.setToolTipText("Digite o numero da conta.");
+        lbNumero.setToolTipText("Digite um numero da conta.");
         add(lbNumero);
         
         Dimension sizeSenha = lbNumero.getPreferredSize();
-        lbNumero.setBounds(10, 40, sizeSenha.width, sizeSenha.height);
+        lbNumero.setBounds(10, 35, sizeSenha.width, sizeSenha.height);
+        
+        lbTaxaRendimento = new JLabel("Taxa de Rendimento: ");
+        lbTaxaRendimento.setToolTipText("Digite um taxa de rendimento.");
+        add(lbTaxaRendimento);
+        
+        Dimension sizeTaxa = lbTaxaRendimento.getPreferredSize();
+        lbTaxaRendimento.setBounds(10, 60, sizeTaxa.width, sizeTaxa.height);
+        
+        txtTaxaRendimento = new JTextField(10);
+        add(txtTaxaRendimento);
+        
+        Dimension sizeTxtTaxaRendimento = txtTaxaRendimento.getPreferredSize();
+        txtTaxaRendimento.setBounds(140, 60, 50, sizeTxtTaxaRendimento.height);
         
         txtNome = new JTextField(10);
         add(txtNome);
@@ -66,13 +77,13 @@ public class CadastrarContaSimplesFrame extends JFrame {
         add(txtNumero);
         
         Dimension sizeTxtSenha = txtNumero.getPreferredSize();
-        txtNumero.setBounds(60, 40, sizeTxtSenha.width, sizeTxtSenha.height);
+        txtNumero.setBounds(60, 35, sizeTxtSenha.width, sizeTxtSenha.height);
         
         btnCriar = new JButton("Criar");
         add(btnCriar);
         
         Dimension sizeBtnLogin = btnCriar.getPreferredSize();
-        btnCriar.setBounds(50, 80, sizeBtnLogin.width, sizeBtnLogin.height);
+        btnCriar.setBounds(50, 90, sizeBtnLogin.width, sizeBtnLogin.height);
         
         ButtonHandler handler = new ButtonHandler();
         btnCriar.addActionListener(handler);
@@ -80,22 +91,22 @@ public class CadastrarContaSimplesFrame extends JFrame {
     }
 
     private class ButtonHandler implements ActionListener{
+
         public ButtonHandler() {
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           //verifica se o cliente existe
+            //verifica se o cliente existe
            ContaFacade cf = ContaFacade.getInstance();
            String msg;
             try {
-                msg = cf.novaContaSimples(txtNome.getText(), Integer.parseInt(txtNumero.getText()));
+                msg = cf.novaContaPoupanca(txtNome.getText(), Integer.parseInt(txtNumero.getText()), Double.parseDouble(txtTaxaRendimento.getText()));
             } catch (Exception ex) {
-                msg = "Numero Invalido! Digite novamente.";
-                //Logger.getLogger(CadastrarContaSimplesFrame.class.getName()).log(Level.SEVERE, null, ex);
+                 msg = "Numero Invalido! Digite novamente.";
+                //Logger.getLogger(CadastrarContaPoupancaFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, msg, "Mensagem", JOptionPane.PLAIN_MESSAGE);
-           
+           JOptionPane.showMessageDialog(null, msg, "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }
     }
 }
