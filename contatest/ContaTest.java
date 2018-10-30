@@ -9,8 +9,11 @@ import javax.swing.JFrame;
  *
  * @author 17164260
  */
+
 public class ContaTest {
+    
     public static void main (String[] agrs){
+        ContaFacade cf = ContaFacade.getInstance();
         MenuFrame menu = new MenuFrame();
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.setSize(260, 180);

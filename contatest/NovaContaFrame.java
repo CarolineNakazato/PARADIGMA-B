@@ -63,14 +63,14 @@ public class NovaContaFrame extends JFrame {
             }
             if(e.getSource() == btnPoupanca){
                 //chama o CadastraContaPoupancaFrame
-                CadastraContaPoupancaFrame cadastraContaPoupancaFrame = new CadastraContaPoupancaFrame();
+                CadastrarContaPoupancaFrame cadastraContaPoupancaFrame = new CadastrarContaPoupancaFrame();
                 cadastraContaPoupancaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 cadastraContaPoupancaFrame.setSize(260, 200);
                 cadastraContaPoupancaFrame.setVisible(true);
             }
             else if(e.getSource() == btnEspecial){
                 //chama o CadastraContaEspecialFrame
-                ClienteFrame contaFrame = new ClienteFrame();
+                CadastraContaEspecialFrame contaFrame = new CadastraContaEspecialFrame();
                 contaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 contaFrame.setSize(260, 180);
                 contaFrame.setVisible(true);
